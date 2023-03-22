@@ -1,0 +1,80 @@
+/* Style.css */
+
+/* Set font and background colors */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F6F7FB;
+}
+
+/* Center the table */
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  box-shadow: 0px 3px 6px #00000029;
+  font-size: 14px; /* Reduce font size */
+  width: 80%; /* Reduce table width */
+}
+
+/* Style table headings */
+th {
+  background-color: #3C3F58;
+  color: #FFFFFF;
+  font-size: 16px; /* Reduce font size */
+  font-weight: bold;
+  text-align: left;
+  padding: 10px; /* Reduce padding */
+}
+
+/* Style table rows */
+td {
+  font-size: 14px; /* Reduce font size */
+  padding: 6px; /* Reduce padding */
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style delete button */
+.delete {
+  background-color: #FF4D4D;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 10px; /* Reduce padding */
+  font-size: 14px; /* Reduce font size */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Style update button */
+.update {
+  background-color: #7B61FF;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 10px; /* Reduce padding */
+  font-size: 14px; /* Reduce font size */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Style add button */
+button.add {
+  margin-top: 20px;
+  background-color: #48BB78;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 10px; /* Reduce padding */
+  font-size: 14px; /* Reduce font size */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Style user rows */
+.user:nth-child(even) {
+  background-color: #F6F7FB;
+}
+
+.user:hover {
+  background-color: #F2F2F2;
+}
