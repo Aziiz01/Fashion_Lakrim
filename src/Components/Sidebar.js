@@ -1,6 +1,7 @@
 function Sidebar() {
   const user = JSON.parse(localStorage.getItem('user')); 
-   const email = user.email;
+  const email = user ? user.email : '';
+
   return (
     <div className="sb-nav-fixed">
       <div id="layoutSidenav">
@@ -14,6 +15,10 @@ function Sidebar() {
                   Hayfa Dashboard
                 </a>
                 <div className="sb-sidenav-menu-heading">Interface</div>
+                <a className="nav-link" href="/users">
+                  <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                  Users
+                </a>
                 <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                   <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
                   Produits
@@ -44,9 +49,11 @@ function Sidebar() {
                 </a>
               </div>
             </div>
-            <div className="sb-sidenav-footer">
-            <div className="small">Logged in as: {email}</div>
-            </div>
+            {user && (
+              <div className="sb-sidenav-footer">
+                <div className="small">Logged in as: {email}</div>
+              </div>
+            )}
           </nav>
         </div>
         <div id="layoutSidenav_content"></div>

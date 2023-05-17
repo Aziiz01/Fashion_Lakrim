@@ -82,19 +82,7 @@ export const userInputs = [
 
     },
      
-    {
-      id: "sous_categorie",
-      label: "Sous Categorie",
-      type: "text",
-      placeholder: "sous categorie",
-    },
-    {
-      id: "sous_sous_categorie",
-      label: "Sous Sous Categorie",
-      type: "text",
-      placeholder: "sous sous categorie",
-    },
-    
+  
   ];
   export const userColumns = [
     { field: "id", headerName: "ID", width: 70 },

@@ -26,7 +26,6 @@ import { useNavigate } from 'react-router-dom';
 const Products = ({ getProductId }) => {
   const [products, setProducts] = useState([]);
   const [categorie, setCategory] = useState("");
-  const [sous_categorie, setSousCategory] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [expanded, setExpanded] = React.useState(false);
   const navigate = useNavigate();
@@ -70,16 +69,17 @@ const deleteHandler = async (id) => {
 
 
   useEffect(() => {
+    getProducts();
+
     // Filter products based on selected categories and subcategories
     const filtered = products.filter((product) => {
       return (
-        (!categorie || product.categorie === categorie) &&
-        (!sous_categorie || product.sous_categorie === sous_categorie)
+        (!categorie || product.categorie === categorie) 
       );
     });
 
     setFilteredProducts(filtered);
-  }, [products, categorie, sous_categorie]);
+  }, [products, categorie]);
 
  
 
@@ -117,27 +117,11 @@ const deleteHandler = async (id) => {
           </select>
         </div>
       </div>
-      <label className="label">Sous Catégorie</label>
-      <div className="control">
-        <div className="select">
-          <select
-            value={sous_categorie}
-            onChange={(e) => setSousCategory(e.target.value)}
-            disabled={!categorie}
-          >
-            <option value="">-- Sélectionner une sous-catégorie --</option>
-            {sous_categories[categorie]?.map((subCategory) => (
-              <option key={subCategory} value={subCategory}>
-                {subCategory}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      
      
-      <Link to="/add_p" className="button is-success">
-        Add New
-      </Link>
+      <Link to="/add_p" className="add_p">
+          Add New
+        </Link>
       <div className="columns is-multiline mt-2">
         {filteredProducts.map((doc) => (
           <Card key={doc.id}sx={{ maxWidth: 200 }}>
@@ -184,16 +168,16 @@ const deleteHandler = async (id) => {
                 </Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                <Button size="small" color="primary" onClick={() => navigate(`/Products/edit/${doc.id}`)}  >
+                <div  className="editButton" onClick={() => navigate(`/Products/edit/${doc.id}`)}  >
                   Modifier
-                </Button>
-                <Button size="small" color="secondary" onClick={() => {
+                </div>
+                <div  className="deleteButton" onClick={() => {
       if (window.confirm("Êtes-vous sûr de vouloir supprimer ce produit?")) {
         deleteHandler(doc.id);
       }
     }}>
     Supprimer
-  </Button>
+  </div>
               </div>
             </div>
           )}

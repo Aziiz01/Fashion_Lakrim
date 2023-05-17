@@ -1,31 +1,44 @@
+import "../Users/Add.scss";
 import { useEffect, useState } from "react";
 import {
   collection,
   doc,
   serverTimestamp,
   setDoc,
+  getDoc,
+  updateDoc
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useNavigate, useParams } from "react-router-dom";
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
+import { useParams, useNavigate } from "react-router-dom";
 
 const Update_p = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
-  const { productId } = useParams();
-  const navigate = useNavigate()
+  const { productId } = useParams(); // Extract the productId from the URL
+  const navigate = useNavigate();
+  const [productPhoto, setProductPhoto] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    const getProductData = async () => {
-      const productDoc = await doc(db, "produits", productId).get();
-      setData(productDoc.data());
-    }
-    getProductData();
-  }, [productId]);
+    const fetchProductData = async () => {
+      try {
+        const productDoc = await getDoc(doc(db, "produits", productId));
+        if (productDoc.exists()) {
+          const productData = productDoc.data();
+          setData(productData);
+          setProductPhoto(productData.img || "");
+        } else {
+          console.log("Product not found");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProductData();
 
-  useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
 
@@ -64,7 +77,6 @@ const Update_p = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
@@ -75,15 +87,25 @@ const Update_p = ({ inputs, title }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await setDoc(doc(db, "produits", productId), {
-        ...data,
+      const updatedData = {
         timeStamp: serverTimestamp(),
-      }, { merge: true });
-      navigate(-1)
+      };
+  
+      for (const key in data) {
+        if (data.hasOwnProperty(key) && data[key] !== undefined) {
+          updatedData[key] = data[key];
+        }
+      }
+  
+      await updateDoc(doc(db, "produits", productId), updatedData);
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
   };
+  
+
+
   return (
     <div className="new">
       <div className="newContainer">
@@ -92,50 +114,50 @@ const Update_p = ({ inputs, title }) => {
         </div>
         <div className="bottom">
           <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : data.img
-              }
+          <img
+              src={imageUrl || data.img || "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
               alt=""
             />
-            <div className="updateInput">
-              <label htmlFor="file">
-                Image: <DriveFolderUploadOutlinedIcon className="icon" />
-              </label>
-              <input
-                type="file"
-                id="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ display: "none" }}
-              />
-            </div>
           </div>
           <div className="right">
             <form onSubmit={handleUpdate}>
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  {input.type === "select" ? (
-                    <select id={input.id} onChange={handleInput} defaultValue={data[input.id]}>
-                      {input.options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      id={input.id}
-                      type={input.type}
-                      placeholder={input.placeholder}
-                      onChange={handleInput}
-                      defaultValue={data[input.id]}
-                    />
-                  )}
-                </div>
-              ))}
+              <div className="formInput">
+                <label htmlFor="file">
+                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  style={{ display: "none" }}
+                />
+              </div>
+
+             
+    {inputs.map((input) => (
+  <div className="formInput" key={input.id}>
+    <label>{input.label}</label>
+    {input.type === 'select' ? (
+      <select id={input.id} value={data[input.id] || ''} onChange={handleInput}>
+        {input.options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    ) : (
+      <input
+        id={input.id}
+        type={input.type}
+        placeholder={input.placeholder}
+        value={data[input.id] || ''}
+        onChange={handleInput}
+      />
+    )}
+  </div>
+))}
+
+
               <button disabled={per !== null && per < 100} type="submit">
                 Update
               </button>
@@ -145,5 +167,7 @@ const Update_p = ({ inputs, title }) => {
       </div>
     </div>
   );
-                  }
-                  export default Update_p;
+};
+
+export default Update_p;
+
