@@ -1,0 +1,115 @@
+.page-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slide-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 500px;
+    width: 90%;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.slider-item-content {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 70%;
+    text-align: center;
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-item .st-h1,
+.slider-item .nd-h1 {
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    font-family: UniversLTStd-Bold;
+    font-weight: 700;
+    line-height:1.5;
+    margin: 10px 0;
+}
+.st-h1 {
+    padding-top: 20px; /* Adjust this value */
+}
+
+.nd-h1 {
+    padding-bottom: 20px; /* Adjust this value */
+}
+.p-elmt{
+    display: flex;
+    flex-direction: column;
+    color: rgb(78, 36, 58);
+    font-family: UniversLTStd-Bold;
+    font-weight: 700;
+
+}
+.shop-now-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.home-container-2{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+    width: 80%;
+    padding-top: 5px;
+    z-index: 0;
+    gap: 2px;
+} 
+
+.left-hotspot, .right-hotspot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+}
+
+.left-hotspot {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0));
+}
+
+.right-hotspot {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0));
+}
+.first-item{
+    margin-bottom: 25px;
+    max-width: 33%; /* This replaces grid-column: 1 / span 2; */
+    height: 22%; /* This replaces grid-row: 1 / span 2; */
+}
+.second-item{
+    width:45%;
+    height:500px; 
+}
+
+
+
+
