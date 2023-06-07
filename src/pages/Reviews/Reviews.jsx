@@ -10,7 +10,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { Table, Button } from "react-bootstrap";
-
+import "../Style.css"
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);

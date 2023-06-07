@@ -1,4 +1,3 @@
-import { categories, sous_categories, sous_sous_categories } from "./Categories";
 export const userInputs = [
     {
       id: "username",
@@ -89,7 +88,7 @@ export const userInputs = [
     {
       field: "user",
       headerName: "User",
-      width: 230,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="cellWithImg">
@@ -102,18 +101,69 @@ export const userInputs = [
     {
       field: "email",
       headerName: "Email",
-      width: 230,
+      width: 200,
     },
   
     {
       field: "address",
       headerName: "Address",
-      width: 100,
+      width: 200,
     },
     {
       field: "phone",
       headerName: "Phone",
       width: 160,
       
+    },
+  ];
+  export const orderColumns = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "client",
+      headerName: "Client",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <div className="cellWithImg">
+            {params.row.nom} {params.row.prenom} {params.row.societe}
+          </div>
+        );
+      },
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 150,
+    },
+  
+    {
+      field: "adresse",
+      headerName: "Adresse",
+      width: 150,
+    },
+    {
+      field: "code_postal",
+      headerName: "Code postal",
+      width: 100,
+    },
+    {
+      field: "ville",
+      headerName: "Ville",
+      width: 80,
+    },
+    {
+      field: "phone",
+      headerName: "Phone",
+      width: 160,
+    },
+    {
+      field: "produits",
+      headerName: "Produits",
+      width: 80,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
     },
   ];

@@ -14,19 +14,24 @@ const Login = () => {
 
   const {dispatch} = useContext(AuthContext)
   
-  const handleLogin = (e)=>{
-    e.preventDefault()
-
-signInWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-  const user = userCredential.user;
-  dispatch({type:"LOGIN",payload:user});
-navigate("/")
-})
-.catch((error) => {
-  setError(true)
-})
-  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+  
+    if (email === "mohamedaziz.nacib@esprit.tn" && password === "123456") {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          dispatch({ type: "LOGIN", payload: user });
+          navigate("/");
+        })
+        .catch((error) => {
+          setError(true);
+        });
+    } else {
+      setError(true);
+    }
+  };
+  
   return(
     <div className="login">
       <form onSubmit={handleLogin}>

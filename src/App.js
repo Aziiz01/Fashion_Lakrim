@@ -12,7 +12,7 @@ import Login from './pages/Login/Login';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
 import { userInputs , productInputs } from './Data/formInputs';
-
+import Orders from './pages/Orders/Orders';
 
 function App() {
   const {currentUser} = useContext(AuthContext) ;
@@ -20,8 +20,12 @@ function App() {
   const RequireAuth = ({children}) => {
     return  currentUser ? children : <Navigate to="/Login" />
   }
+
+
   return (
+    <>
     <div className="App" style={{ display: 'flex', height: '100%' }}>
+      
       <BrowserRouter>
       <Sidebar />
 
@@ -36,10 +40,13 @@ function App() {
           <Route exact path="/Products" element={<RequireAuth><Products /></RequireAuth>} />
           <Route exact path="/Products/edit/:productId" element={<RequireAuth><EditProduct inputs={productInputs}/></RequireAuth>} />
           <Route exact path="/Reviews" element={<RequireAuth><Reviews /></RequireAuth>} />
+          <Route exact path="/Orders" element={<RequireAuth><Orders /></RequireAuth>} />
+
           
         </Routes>
       </BrowserRouter>
     </div>
+    </>
   );
 }
 

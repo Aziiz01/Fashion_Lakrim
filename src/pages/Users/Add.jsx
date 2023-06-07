@@ -12,14 +12,15 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
-
+ 
 const Add = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
- useEffect(() => {
+
+   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
 
@@ -79,7 +80,9 @@ const Add = ({ inputs, title }) => {
         ...data,
         timeStamp: serverTimestamp(),
       });
-      navigate(-1)
+      
+      navigate(-1);
+   
     } catch (err) {
       console.log(err);
     }
@@ -89,9 +92,7 @@ const Add = ({ inputs, title }) => {
     <div className="new">
       
       <div className="newContainer">
-        <div className="top">
-          <h1>{title}</h1>
-        </div>
+       
         <div className="bottom">
         <div className="left">
             <img
