@@ -1,38 +1,26 @@
-import React, { useState } from "react";
+import React, {useContext} from "react";
 import { Offcanvas } from "react-bootstrap";
 import "./addToCart.css";
 import CartItem from "./CartItem";
-import { store,  handleRemove } from "./Store";
+import { useSelector } from "react-redux";
+import {ThemeContext} from "./ThemeProvider";
+
 
 function OffcanvasComponent(props) {
-  const [offcanvasStore, setOffcanvasStore] = useState(store);
-
-  const updateOffcanvas = (newStore) => {
-    setOffcanvasStore(newStore);
-  };
-
-  const handleRemoveOffcanvas = (id) => {
-    const newOffcanvasStore = offcanvasStore.filter((item) => item.id !== id);
-    setOffcanvasStore(newOffcanvasStore);
-  };
+  const cartItems = useSelector((state)=> state.cart)
+  const {theme}=useContext(ThemeContext);
 
   return (
-    <Offcanvas show={props.show} onHide={props.onHide} style={{ width: "700px" }}>
+    <Offcanvas show={props.show} onHide={props.onHide} style={{ width: "700px" ,backgroundColor:theme.backgroundColor}}>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>
-          <h2>Cart</h2>
+          <h2 style={{color:theme.primary,fontFamily: 'Tt-Chocolate' }}>CART</h2>
         </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <div className="cart-items">
-          {offcanvasStore.map((item, index) => (
-            <CartItem
-              key={index}
-              data={item}
-              handleRemove={handleRemove}
-              handleRemoveOffcanvas={handleRemoveOffcanvas}
-              updateOffcanvas={updateOffcanvas}
-            />
+          {cartItems.map((item) => (
+            <CartItem key={item.id} itemId={item.id} data={item} />
           ))}
         </div>
       </Offcanvas.Body>

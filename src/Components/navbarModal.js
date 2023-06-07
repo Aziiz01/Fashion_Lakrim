@@ -27,10 +27,9 @@ function NavbarModal(props){
 
   return (
     <>
-      <Modal show={props.show} fullscreen={true} onHide={props.hide} scrollable={true} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-        <Modal.Header closeButton>
-
-        </Modal.Header>
+      <Modal show={props.show} fullscreen={true} onHide={props.hide} scrollable={true} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',}}>
+        <Modal.Header style={{backgroundColor:'#181a1b'}} closeButton>
+        </Modal.Header >
         <Modal.Body>
         <div>
             <button className='btn' onClick={toggleSearch}>
