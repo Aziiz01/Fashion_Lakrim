@@ -1,3 +1,7 @@
+.navbar{
+  background-color: black;
+}
+
 /* adds some margin below the link sets  */
 .navbar .dropdown-menu div[class*="col"] {
   margin-bottom:1rem;
@@ -5,7 +9,7 @@
 
 .navbar .dropdown-menu {
  border:none;
- background-color:#fff!important;
+ background-color:#372b2b!important;
 }
 
 /* breakpoint and up - mega dropdown styles */
@@ -53,7 +57,7 @@
  
  .navbar .dropdown-menu {
    border: 1px solid rgba(0,0,0,.15);
-   background-color: #fff;
+   background-color: #412d2d;
  }
 
 }

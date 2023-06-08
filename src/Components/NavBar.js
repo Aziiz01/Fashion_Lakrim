@@ -249,14 +249,13 @@ return(
            <MdOutlineFavorite className='icon' color='white' size={'25px'}/>
          </button>
        </OverlayTrigger>
-       <OverlayTrigger
-         placement="bottom"
-         overlay={renderTooltip('Mon compte')}
-       >
-         <button className='btn'>
-           <MdAccountBox className='icon' color='white' size={'25px'} />
-         </button>
-       </OverlayTrigger>
+       <Link to="/login">
+      <OverlayTrigger placement="bottom" overlay={renderTooltip('Mon compte')}>
+        <button className='btn'>
+          <MdAccountBox className='icon' color='white' size={'25px'} />                  
+        </button>
+      </OverlayTrigger>
+    </Link>
        <OverlayTrigger
          placement="bottom"
          overlay={renderTooltip('Recherche')}
