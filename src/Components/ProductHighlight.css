@@ -1,0 +1,26 @@
+.product-highlight {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.product-name {
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.product-description {
+    font-size: 20px;
+}

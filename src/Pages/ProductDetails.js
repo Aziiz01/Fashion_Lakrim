@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import productData from '../Components/content';
 
 
+
 export default function ProductDetails() {
-    const { category , product } = useParams();
+    const {  product } = useParams();
     let products;
     if (product) {
         product = productData.filter(product => product.id === product);
@@ -13,16 +14,16 @@ export default function ProductDetails() {
       }
     
       return (
-        <div>
-          {product.map(product => (
-            <div key={product.id}>
-              <h2>{product.title}</h2>
-              <p>{product.text}</p>
-              <img src={product.img} alt={product.title} />
-              {/* ... other product data ... */}
-            </div>
-          ))}
-        </div>
+          <div className='products-section'>
+            {product.map(product => (
+              <div key={product.id}>
+                <h2>{product.title}</h2>
+                <p>{product.text}</p>
+                <img src={product.img} alt={product.title} />
+                {/* ... other product data ... */}
+              </div>
+            ))}
+          </div>
       );
     }
 

@@ -1,9 +1,10 @@
-moda{
-    margin-top: 20px;
+.modal{
+    background-color: #181a1b ;
 }
 .modal-body{
     display: flex;
     flex-direction: column;
+    background-color: #181a1b ;
  
 }
 
@@ -26,8 +27,8 @@ moda{
     font-family: "Brush Script";
 }
 .link-section a:hover{
-    color: gold;
-    background-color: rgb(31, 79, 134);
+    background-color: #2a151e ;
+    color: #b3a7b523;
 }
 
 .categorie-section{
@@ -50,7 +51,7 @@ moda{
     letter-spacing: 2px;
 }
 .cat-title a h4:hover{
-    color: goldenrod;
+    color: rgb(216, 42, 255);
 }
 img{
     max-width: 80%;
@@ -90,9 +91,8 @@ img{
 }
 
 .catBtn1 h4{
-    font-weight: bold;
-    font-family: "Brush Script"; 
-    color: wheat
+    color: #181a1b;
+    
 }
 .catBtn2 h4{
     font-weight: bold;

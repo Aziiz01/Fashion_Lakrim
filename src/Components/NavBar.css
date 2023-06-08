@@ -3,6 +3,9 @@
 }
 
 /* adds some margin below the link sets  */
+.navbar{
+  padding-left: 10px;
+}
 .navbar .dropdown-menu div[class*="col"] {
   margin-bottom:1rem;
 }
@@ -73,7 +76,11 @@
   display: flex;
   margin-right: 5px;
  }
+ .navbar-hamburger .ham-btn{
+  border: #fff;
+ }
  .navbar-buttons{
   display: none;
  }
 }
+
